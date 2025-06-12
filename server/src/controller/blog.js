@@ -23,4 +23,8 @@ const getBlogById = async(req,res)=>{
   const data = await Blog.findById(req.params.id)
   res.send(data)
 }
-export { addNewBlog, getAllBlog,getBlogById };
+const deleteBlogById = async(req,res)=>{
+  const data = await Blog.findByIdAndDelete(req.params.id)
+  res.send(data)
+}
+export { addNewBlog, getAllBlog,getBlogById ,deleteBlogById};
