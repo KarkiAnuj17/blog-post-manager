@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {addNewBlog, deleteBlogById, getAllBlog, getBlogById} from '../controller/blog.js';
+import {addNewBlog, deleteBlogById, getAllBlog, getBlogById, updateBlogById} from '../controller/blog.js';
 import multer from 'multer'; 
 const blogRoute = Router();
 
@@ -18,5 +18,7 @@ const storage = multer.diskStorage({
   blogRoute.get('/blogs',getAllBlog)
   blogRoute.get('/blogs/:id',getBlogById)
   blogRoute.delete('/blogs/:id',deleteBlogById)
+  blogRoute.put('/blogs/:id', upload.single("image"), updateBlogById)
+
 
 export default blogRoute;

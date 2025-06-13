@@ -29,7 +29,7 @@ const BlogList = () => {
   }
 
   const handleEdit = (id) => {
-    router.push("/edit-blog/" + id)
+    router.push("/admin/edit-blog/" + id)
   }
 
   const handleDelete = async (id) => {
