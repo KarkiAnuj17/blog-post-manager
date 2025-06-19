@@ -21,16 +21,14 @@ const Register = () => {
   const handleRegister = async (values, { resetForm }) => {
   try {
     const { data } = await axios.post("http://localhost:8000/register", values);
-    toast.success(data.message || "Registered Successfully");
+    toast(data?.message || "Registered Successfully");
     resetForm();
     router.push("/login");
   } catch (error) {
-    console.error("Registration error:", error);
+    toast(error?.response?.data?.message || "Signup failed. Please try again.");
 
     if (error.response) {
-      toast.error(error.response.data.message || "Registration failed");
-    } else {
-      toast.error("Network error. Please check your connection.");
+      toast(error.response.data.message || "Registration failed");
     }
   }
 };

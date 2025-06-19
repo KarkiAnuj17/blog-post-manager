@@ -17,15 +17,14 @@ const Login = () => {
 
   const [showPassword, setShowPassword] = useState(false)
 
-  const handleLogin = async (values, { resetForm }) => {
+  const handleLogin = async (values, ) => {
     try {
       const { data } = await axios.post("http://localhost:8000/login", values)
-
-      toast.success(data.message || "Login successful!")
+      toast(data?.message || "Login successful!")
       router.push("/mainpage")
 
     } catch (error) {
-      console.error("Registration error:", error)
+    toast(error?.response?.data?.message || "Signup failed. Please try again.");
     }
   }
 

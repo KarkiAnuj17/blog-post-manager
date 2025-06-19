@@ -2,17 +2,16 @@
 
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { useRouter } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Loader2 } from "lucide-react"
-import { use } from "react"
 import { toast } from "sonner"
 
-export default function EditBlog({ params }) {
+export default function EditBlog() {
   const [blog, setBlog] = useState(null)
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
@@ -24,7 +23,8 @@ export default function EditBlog({ params }) {
   const [error, setError] = useState(null)
   const router = useRouter()
 
-  const {id} = use(params)
+const params = useParams();
+const id = params?.id;
 
   useEffect(() => {
     fetchBlog()

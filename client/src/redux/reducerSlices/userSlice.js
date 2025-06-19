@@ -1,21 +1,33 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
-  user: {},
-};
-
-const userSlice = createSlice({
+const initialState ={
+    _id:'',
+    email :'',
+    token:'',
+    fullName:'',
+    isLoggedIn:false,
+}
+export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    loginUser: (state, action) => {
-      state.user = action.payload;
+    logoutUser :state =>{
+     return initialState
     },
-    logoutUser: (state) => {
-      state.user = null;
-    },
-  },
-});
+    addLoginDetails:(state,action)=>{
+      const {token,isLoggedIn}=action.payload
+      const {email,fullName,_id}=action.payload.user
+      return{
+        ...state,
+        email:email,
+        token:token,
+        fullName:fullName,
+        isLoggedIn:isLoggedIn,
+        _id :_id
+      }
+    }
+  }
+})
+export const { logoutUser,addLoginDetails } = userSlice.actions
 
-export const { loginUser, logoutUser } = userSlice.actions;
-export default userSlice.reducer;
+export default userSlice.reducer
